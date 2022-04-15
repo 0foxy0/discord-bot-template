@@ -34,6 +34,9 @@ module.exports = async (client) => {
     });
     
     client.on("ready", async () => {
+        // Setting up the Slash Commands
+        await client.application.commands.set(arrayOfSlashCommands);
+
         // Delete the not defined Slash Commands
         const guilds = await client.guilds.fetch();
         const rest = new REST({ version: "9" }).setToken(token);
@@ -52,10 +55,7 @@ module.exports = async (client) => {
                 return Promise.all(promises); 
             });
         });
-
-        // Setting up the Slash Commands
-        await client.application.commands.set(arrayOfSlashCommands);
-
+        
         // Status
         console.log(`Script logged in as: ${client.user.tag}!`)
         await client.user.setActivity("bot's activity", {type: "PLAYING"});
