@@ -24,6 +24,7 @@ module.exports = async (client) => {
 
     const arrayOfSlashCommands = [];
     slashCommands.map((value) => {
+
         const file = require(value);
         if (!file?.name) return;
         client.slashCommands.set(file.name, file);
@@ -31,6 +32,7 @@ module.exports = async (client) => {
         if (["MESSAGE", "USER"].includes(file.type)) delete file.description;
         arrayOfSlashCommands.push(file);
     });
+    
     client.on("ready", async () => {
         // Delete the not defined Slash Commands
         const guilds = await client.guilds.fetch();
@@ -56,7 +58,7 @@ module.exports = async (client) => {
 
         // Status
         console.log(`Script logged in as: ${client.user.tag}!`)
-        await client.user.setActivity("/help", {type: "PLAYING"});
+        await client.user.setActivity("bot's activity", {type: "PLAYING"});
     });
 
     // mongoose
