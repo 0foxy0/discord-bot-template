@@ -6,7 +6,7 @@ For any further questions, you may raise an issue or contact me on Discord: [Com
 
 Before you get started, there are a few pre-requisites that you MUST have. Please do not proceed until you have:
 
-- At least a little bit JavaScript Knowledge
+- JavaScript Knowledge
 - NodeJS v16.13.0 installed
 
 ---
