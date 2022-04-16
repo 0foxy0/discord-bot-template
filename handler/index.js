@@ -34,6 +34,20 @@ module.exports = async (client) => {
     });
     
     client.on("ready", async () => {
+        // Setting up the normal Commands
+        const commandFiles = await globPromise(`${process.cwd()}/commands/**/*.js`);
+        
+        commandFiles.map((value) => {
+            const file = require(value);
+            const splitted = value.split("/");
+            const directory = splitted[splitted.length - 2];
+
+            if (file.name) {
+                const properties = { directory, ...file };
+                client.commands.set(file.name, properties);
+            }
+        });
+        
         // Setting up the Slash Commands
         await client.application.commands.set(arrayOfSlashCommands);
 
