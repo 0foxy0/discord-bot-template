@@ -76,5 +76,6 @@ module.exports = async (client) => {
     });
 
     // mongoose
+    if (!mongodbLink) return;
     mongoose.connect(mongodbLink).then(() => console.log("Connected to MongoDB!"));
 };
